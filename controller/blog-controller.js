@@ -26,8 +26,8 @@ const Blog = {
 
   getOne: function (id) {
     let entries = this.getAll();
-    let todo = entries.filter(todo => todo.id === id);
-    return todo[0] || {
+    let entry = entries.filter(entry => entry.id === parseInt(id));
+    return entry[0] || {
       error: 'Not found'
     }; 
   },
@@ -48,7 +48,7 @@ const Blog = {
       id: id + 1,
       title: data.title || 'default title',
       content: data.content || 'default content',
-      hash: data.hash || 'none',
+      tag: data.tag || 'none',
       created: formatedDate,
       updated: formatedDate
     };
@@ -65,12 +65,12 @@ const Blog = {
 
   removeOne: function (id) {
     let entries = this.getAll();
-    entries = entries.filter(entry => entry.id !== id);
+    entries = entries.filter(entry => entry.id !== parseInt(id));
     this.save(entries);
     return entries;
   },
 
-  edie: function (id, data) {
+  editOne: function (id, data) {
     
       return entries;
   
