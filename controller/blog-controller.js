@@ -49,6 +49,7 @@ const Blog = {
       title: data.title || 'default title',
       content: data.content || 'default content',
       tag: data.tag || 'none',
+      comments: data.comments,
       created: formatedDate,
       updated: formatedDate
     };
@@ -71,8 +72,23 @@ const Blog = {
   },
 
   editOne: function (id, data) {
-    
+    let entries = this.getAll();
+    let now = new Date;
+    let formatedNow = `${now.getFullYear()}-${(now.getMonth()+1)}-${now.getDate()}
+    Idő: ${now.getHours()}:${now.getMinutes()}`;
+
+    const index = entries.findIndex(entry => entry.id === parseInt(id));
+    if (index !== -1) {
+      entries[index].title = data.title || entries[index].title;
+      entries[index].content = data.content || entries[index].content;
+      entries[index].tag = data.tag || entries[index].tag ;
+      entries[index].updated = formatedNow;
+      this.save(entries);
       return entries;
+    }
+    return {
+      error: `The given ID: ${id} is not found`
+    };
   
   }
 
