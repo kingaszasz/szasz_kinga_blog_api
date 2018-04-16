@@ -49,7 +49,7 @@ const Blog = {
       title: data.title || 'default title',
       content: data.content || 'default content',
       tag: data.tag || 'none',
-      comments: data.comments,
+      comments: [],
       created: formatedDate,
       updated: formatedDate
     };
@@ -90,8 +90,26 @@ const Blog = {
       error: `The given ID: ${id} is not found`
     };
   
-  }
+  },
 
+  addComment: function (id, data) {
+    let entries = this.getAll();
+    let now = new Date;
+    let formatedNow = `${now.getFullYear()}-${(now.getMonth()+1)}-${now.getDate()}
+    Idő: ${now.getHours()}:${now.getMinutes()}`;
+
+    const index = entries.findIndex(entry => entry.id === parseInt(id));
+    if (index !== -1) {
+         entries[index].updated = formatedNow;
+      entries[index].comments.push(data.comments);
+      this.save(entries);
+      return entries;
+    }
+    return {
+      error: `OOPS somthing went wrong!`
+    };
+  
+  }
 };
 
 module.exports = Blog;

@@ -25,6 +25,10 @@ blogRouter.put('/:id', function(req, res) {
     res.json(Blog.editOne(req.params.id, req.body));
   });
 
+blogRouter.put('/comment/:id', function(req, res) {
+    res.json(Blog.addComment(req.params.id, req.body));
+  });
+
 // DELETE local host:3000/blog/:id
 blogRouter.delete('/:id', function(req, res) {
   res.json(Blog.removeOne(req.params.id));
