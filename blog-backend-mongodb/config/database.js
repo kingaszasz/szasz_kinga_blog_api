@@ -2,8 +2,8 @@
 const host = 'localhost' //saját gépünk
 const port = 27017
 const user = 'root'  //a user neve, akivel csatlakozni akarok
-const password = 'toor'
-const database = 'blog'
+const password = 'rootpass'
+const database = 'newblog'
 
 const options = {
   connectTimeoutMS: 2000, //mennyi időt adunka kapcsolódásra
