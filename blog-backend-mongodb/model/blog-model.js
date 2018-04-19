@@ -23,16 +23,9 @@ const blogSchema = new mongoose.Schema({
   comments: {
     type: Array,
     required: true
-  },
-  createdAt: {
-    type: Date,
-    default: Date.now
-  },
-  updatedAt: {
-    type: Date,
-    default: Date.now
   }
-})
+}, {timestamps: true
+});
 
 // Methods - ha akarnánk még hozzá adni metódusokat, akkor itt tehetjük meg
 blogSchema.method({})

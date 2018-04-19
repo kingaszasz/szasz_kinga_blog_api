@@ -9,7 +9,6 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { NavComponent } from './nav/nav.component';
-import { LoginComponent } from './login/login.component';
 import { AboutUsComponent } from './aboutus/aboutus.component';
 import { DevelopComponent } from './develop/develop.component';
 import { BackgrounComponent } from './backgroun/backgroun.component';
@@ -17,7 +16,6 @@ import { MypostsComponent } from './myposts/myposts.component';
 
 const routes: Routes = [
   { path: '', component: MypostsComponent, pathMatch: 'full' },
-  { component: LoginComponent, path: 'login' },
   { component: MypostsComponent, path: 'myposts' },
   { component: DevelopComponent, path: 'develop' },
   { component: BackgrounComponent, path: 'background' },
@@ -30,7 +28,6 @@ const routes: Routes = [
   declarations: [
     AppComponent,
     NavComponent,
-    LoginComponent,
     AboutUsComponent,
     DevelopComponent,
     BackgrounComponent,

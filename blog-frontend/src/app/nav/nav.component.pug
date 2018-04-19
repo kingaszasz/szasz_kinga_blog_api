@@ -12,6 +12,56 @@ nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
 					a.nav-link(routerLink='/develop') Develope
 				li.nav-item(routerLinkActive='active')
 					a.nav-link(routerLink='/myposts') My Posts
-				li.nav-item(routerLinkActive='active')
-					a.nav-link(routerLink='/login') Login
 
+				li.nav-item
+					a.nav-link(data-toggle='modal', data-target='#registerModal') Register
+				li.nav-item
+					button.btn.btn-success(type='button', data-toggle='modal', data-target='#loginModal') LOGIN
+				li.nav-item
+					button.btn.btn-primary.justify-content-end(type='button', (click)="logout()") LOGOUT 
+				
+				
+// modal
+
+#loginModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='exampleModalLabel', aria-hidden='true')
+	.modal-dialog(role='document')
+		.modal-content
+			.modal-header
+				h5#exampleModalLabel.modal-title Login
+				button.close(type='button', data-dismiss='modal', aria-label='Close')
+					span(aria-hidden='true') ×
+			.modal-body
+				form
+					.form-group
+						label(for='username') Username
+						input#username.form-control(name="username" type='text', aria-describedby='username', placeholder='Enter your username', [(ngModel)]="user.username")
+					.form-group
+						label(for='pass') Password
+						input#pass.form-control(name="password" type='password', placeholder='Password', [(ngModel)]="user.password")
+			.modal-footer
+				button.btn.btn-secondary(type='button', data-dismiss='modal') Close
+				button.btn.btn-primary(type='button', data-dismiss='modal', (click)="login()") Go!
+
+
+
+#registerModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='registerModalLabel', aria-hidden='true')
+	.modal-dialog(role='document')
+		.modal-content
+			.modal-header
+				h5#registerModalLabel.modal-title Register
+				button.close(type='button', data-dismiss='modal', aria-label='Close')
+					span(aria-hidden='true') ×
+			.modal-body
+				form
+					.form-group
+						label(for='newusername') Username
+						input#newusername.form-control(name="username" type='text', aria-describedby='newusername', placeholder='Enter your username', [(ngModel)]="newuser.username")
+					.form-group
+						label(for='newemail') Email
+						input#newemail.form-control(name="email" type='text', aria-describedby='newemail', placeholder='Enter your email', [(ngModel)]="newuser.email")
+					.form-group
+						label(for='newpass') Password
+						input#newpass.form-control(name="password" type='password', placeholder='Password', [(ngModel)]="newuser.password")
+			.modal-footer
+				button.btn.btn-secondary(type='button', data-dismiss='modal') Close
+				button.btn.btn-primary(type='button', data-dismiss='modal', (click)="register()") Go!

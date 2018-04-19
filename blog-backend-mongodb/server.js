@@ -90,7 +90,7 @@ passport.deserializeUser(User.deserializeUser());
 
 // API routes
 app.use('/blog', blogRouter);
-app.use('/', userRouter);
+app.use('/user', userRouter);
 
 
 //Start server
