@@ -1,5 +1,6 @@
 const Blog = require('../model/blog-model')
 
+//Blog..... mongoose utasítások!
 module.exports = {
   list: (req, res) => {
     Blog.find({}, (err, post) => {
