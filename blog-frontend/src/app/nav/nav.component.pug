@@ -13,11 +13,13 @@ nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
 				li.nav-item(routerLinkActive='active')
 					a.nav-link(routerLink='/myposts') My Posts
 
-				li.nav-item
+				li.nav-item(*ngIf="success==false")
 					a.nav-link(data-toggle='modal', data-target='#registerModal') Register
-				li.nav-item
+				li.nav-item(*ngIf="success==false")
 					button.btn.btn-success(type='button', data-toggle='modal', data-target='#loginModal') LOGIN
-				li.nav-item
+				li.nav-item(*ngIf="success==true")
+					p.justify-content-end {{user.email}}
+				li.nav-item(*ngIf="success==true")
 					button.btn.btn-primary.justify-content-end(type='button', (click)="logout()") LOGOUT 
 				
 				
@@ -40,7 +42,7 @@ nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
 						input#pass.form-control(name="password" type='password', placeholder='Password', [(ngModel)]="user.password")
 			.modal-footer
 				button.btn.btn-secondary(type='button', data-dismiss='modal') Close
-				button.btn.btn-primary(type='button', data-dismiss='modal', (click)="login()") Go!
+				button.btn.btn-primary(type='submit', data-dismiss='modal', (click)="login()") Go!
 
 
 
@@ -64,4 +66,4 @@ nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
 						input#newpass.form-control(name="password" type='password', placeholder='Password', [(ngModel)]="newuser.password")
 			.modal-footer
 				button.btn.btn-secondary(type='button', data-dismiss='modal') Close
-				button.btn.btn-primary(type='button', data-dismiss='modal', (click)="register()") Go!
+				button.btn.btn-primary(type='submit', data-dismiss='modal', (click)="register()") Go!

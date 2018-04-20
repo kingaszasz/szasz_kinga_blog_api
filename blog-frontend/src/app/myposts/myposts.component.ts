@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Http } from '@angular/http';
 
 @Component({
   selector: 'app-myposts',
@@ -6,21 +7,22 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./myposts.component.css']
 })
 export class MypostsComponent implements OnInit {
-/*
+
   entries: any = '';
+
   blogEntry: BlogEntry = {
-    _id: '',
-    type: '',
+    tag: '',
     title: '',
     content: '',
-    createdAt: new Date,
-    updatedAt: new Date
+    comment: []
   };
+
   modal: BlogEntry = {
     _id: '',
-    type: '',
+    tag: '',
     title: '',
     content: '',
+    comment: [],
     createdAt: new Date,
     updatedAt: new Date
   };
@@ -31,7 +33,7 @@ export class MypostsComponent implements OnInit {
 
   // feltölti a entries változót a szerverről kapott adatokkal
   getAll() {
-    this.http.get('http://localhost:3900/blogpost').subscribe(
+    this.http.get('http://localhost:3900/blog').subscribe(
       (data) => {
         this.errorHandling(data);
       }
@@ -47,29 +49,36 @@ export class MypostsComponent implements OnInit {
     }
   }
 
-  // post, megkapja az adatot, ami az új adatokat tartalmazza
   create() {
-    this.http.post('http://localhost:3900/blogpost/', this.blogEntry)
+    this.http.post('http://localhost:3900/blog', this.blogEntry)
     .subscribe(
       (data) => {
         this.errorHandling(data);
+        console.log(this.blogEntry);
       }
     );
   }
 
   delete(id) {
-    this.http.delete(`http://localhost:3900/blogpost/${id}`).
+    if (confirm('Really?')) {
+    this.http.delete(`http://localhost:3900/blog/${id}`).
       subscribe((data) => this.entries = JSON.parse(data['_body']));
+      this.getAll();
+
+    }
+
   }
-  
+
   modalChange(id) {
-    let choosen = this.entries.filter(entry => entry._id === id)[0];
+    const choosen = this.entries.filter(entry => entry._id === id)[0];
     this.modal = Object.assign({}, choosen); // a this.modal megkapja egy duplikációját a choosennen
   }
   update() {
-    this.http.put('http://localhost:3900/blogpost/' + this.modal['_id'] , this.modal)
+    this.http.put('http://localhost:3900/blog/' + this.modal['_id'] , this.modal)
       .subscribe((data) => this.entries = JSON.parse(data['_body']));
-  }*/
+      this.getAll();
+  }
+
   ngOnInit() {
   }
 }

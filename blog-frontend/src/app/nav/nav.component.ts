@@ -17,6 +17,8 @@ export class NavComponent implements OnInit {
     email: '',
     password: ''
   };
+  success = false;
+  successReg = false;
 
   constructor(public http: Http) {
   }
@@ -34,6 +36,7 @@ export class NavComponent implements OnInit {
       console.log('Api error: ' + res.error);
     } else {
       console.log(res);
+      return res.success;
     }
   }
 
@@ -48,6 +51,9 @@ export class NavComponent implements OnInit {
     this.http.post('http://localhost:3900/user/login', this.user).subscribe(
       data => {
         this.errorHandling(data);
+        if (this.errorHandling(data).success) {
+          return this.success = true;
+        }
       });
   }
 
