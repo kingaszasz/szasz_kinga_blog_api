@@ -1,4 +1,4 @@
-nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
+nav.navbar.navbar-expand-lg.navbar-light
 		a.navbar-brand(href='#') MyBlog 
 		button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarColor01', aria-controls='navbarColor01', aria-expanded='false', aria-label='Toggle navigation')
 			span.navbar-toggler-icon
@@ -11,16 +11,19 @@ nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
 				li.nav-item(routerLinkActive='active')
 					a.nav-link(routerLink='/develop') Develope
 				li.nav-item(routerLinkActive='active')
-					a.nav-link(routerLink='/myposts') My Posts
+					a.nav-link(routerLink='/public') PublicPOSTS
+				li.nav-item(routerLinkActive='active')
+					a.nav-link(*ngIf="success==true", routerLink='/myposts') My Posts
 
-				li.nav-item(*ngIf="success==false")
-					a.nav-link(data-toggle='modal', data-target='#registerModal') Register
-				li.nav-item(*ngIf="success==false")
-					button.btn.btn-success(type='button', data-toggle='modal', data-target='#loginModal') LOGIN
-				li.nav-item(*ngIf="success==true")
-					p.justify-content-end {{user.email}}
-				li.nav-item(*ngIf="success==true")
-					button.btn.btn-primary.justify-content-end(type='button', (click)="logout()") LOGOUT 
+
+
+			form.form-inline.my-2.my-lg-0
+				
+				.btn-group.btn-group(role='group')
+					button.btn.btn-light(*ngIf="success==false", data-toggle='modal', data-target='#registerModal') Register
+					button.btn.btn-light(*ngIf="success==false", type='button', data-toggle='modal', data-target='#loginModal') LOGIN
+					label(for="logout", *ngIf="success==true") Wellcome {{user.username}}!  
+					button.btn.btn-light#logout(*ngIf="success==true", type='button', (click)="logout()") LOGOUT 
 				
 				
 // modal

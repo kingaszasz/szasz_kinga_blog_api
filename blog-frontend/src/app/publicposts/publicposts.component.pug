@@ -1,0 +1,68 @@
+table.table.table-striped
+        thead
+        tr
+            th 
+            th Add tag(s)
+            th Title
+            th Content
+            th 
+       
+        tbody
+            tr
+                th(scope='row') #
+                td 
+                    input#tag.form-control(type="text" name="tag",   [(ngModel)]="blogEntry.tag")
+                td 
+                    input#title.form-control(type="text" name="title",  [(ngModel)]="blogEntry.title")
+                td 
+                    input#content.form-control(type="text" name="content" ,[(ngModel)]="blogEntry.content")
+                td
+                    .btn-group
+                        button.btn.btn-success(type="button", (click)='create()') Add new
+
+.container
+    .card-columns
+        .card.border-success.mb-3(style='max-width: 18rem;')(*ngFor="let entry of entries ")
+            .card-header.border-success {{entry.tag}}
+            .card-body.text-success
+                h5.card-title {{entry.title}}
+                p.card-text.text-success {{entry.content}} 
+            .card-footer.bg-transparent.border-success
+                p.small.text-muted 
+                    | Updated on: {{entry.updatedAt}} 
+                    | Created on: {{entry.createdAt}}
+                button.btn.btn-sm.btn-info(type="button" data-toggle='modal', data-target='#updateRow', (click)='modalChange(entry._id)') Change
+                button.btn.btn-sm.btn-dark(type="button", (click)='delete(entry._id)') Delete
+                button.btn.btn-sm.btn-light(type="button", (click)='addComment(entry._id)') Comment
+
+
+
+// *********** MODAL FOR UPDATE ROW
+
+#updateRow.modal.fade(tabindex='-1', role='dialog', aria-labelledby='exampleModalLabel', aria-hidden='true')
+  .modal-dialog(role='document')
+    .modal-content
+      .modal-header
+        h5#exampleModalLabel.modal-title ID: {{modal._id}}
+        button.close(type='button', data-dismiss='modal', aria-label='Close')
+          span(aria-hidden='true') ×
+      .modal-body
+        .form-group
+          label(for="text") Tag(s)
+          input#text.form-control(type="text" name="type" ,[(ngModel)]="modal.tag")
+        .form-group
+          label(for="important") Title
+          input#important.form-control(type="text" name="title" ,[(ngModel)]="modal.title")
+        .form-group
+          label(for="done") Content
+          input#done.form-control(type="text" name="done" ,[(ngModel)]="modal.content")
+        p Created: {{modal.createdAt}}
+        p Last update: {{modal.updatedAt}}
+      .modal-footer
+        button.btn.btn-secondary(type='button', data-dismiss='modal') Close
+        button.btn.btn-primary(type='button', data-dismiss='modal', (click)='update()') Save
+
+
+
+
+          

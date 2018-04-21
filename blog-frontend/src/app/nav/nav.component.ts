@@ -19,7 +19,7 @@ export class NavComponent implements OnInit {
     password: ''
   };
   success = false;
-  successReg = false;
+  
   url = 'http://localhost:3900/user/';
 
   constructor(public http: HttpClient) {
@@ -44,8 +44,8 @@ export class NavComponent implements OnInit {
           console.log(data);
         }
       );
-      this.successReg = true;
-
+      this.user = this.newuser;
+      this.success = true;
   }
 
   login() {
