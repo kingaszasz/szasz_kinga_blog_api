@@ -1,6 +1,7 @@
 
   interface BlogEntry {
         _id?: String;
+        userid?: String;
         tag: String;
         title: String;
         content: String;
