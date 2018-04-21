@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Http, HttpModule } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-nav',
@@ -19,49 +20,53 @@ export class NavComponent implements OnInit {
   };
   success = false;
   successReg = false;
+  url = 'http://localhost:3900/user/';
 
-  constructor(public http: Http) {
+  constructor(public http: HttpClient) {
+    this.getUser();
   }
 
   getUser() {
-    this.http.get('http://localhost:3900/user').subscribe(
-      data => {
-        this.errorHandling(data);
-        console.log(data);
-      });
-  }
-  errorHandling(res) {
-    res = JSON.parse(res['_body']);
-    if (res.error) {
-      console.log('Api error: ' + res.error);
-    } else {
-      console.log(res);
-      return res.success;
-    }
+    this.http.get(this.url)
+      .subscribe(
+        (data: User) => {
+          this.user = data;
+          console.log(data);
+        }
+      );
   }
 
   register() {
-    this.http.post('http://localhost:3900/user/register', this.newuser).subscribe(
-      data => {
-        this.errorHandling(data);
-      });
+    this.http.post(`${this.url}register`, this.newuser)
+      .subscribe(
+        (data: User) => {
+          this.user = this.newuser;
+          console.log(data);
+        }
+      );
+      this.successReg = true;
+
   }
 
   login() {
-    this.http.post('http://localhost:3900/user/login', this.user).subscribe(
-      data => {
-        this.errorHandling(data);
-        if (this.errorHandling(data).success) {
-          return this.success = true;
+    this.http.post(`${this.url}login`, this.user)
+      .subscribe(
+        (data: User) => {
+          console.log(data);
         }
-      });
+      );
+      this.success = true;
   }
 
   logout() {
-    this.http.get('http://localhost:3900/user/logout').subscribe(
-      data => {
-        this.errorHandling(data);
-      });
+    this.http.get(`${this.url}logout`)
+      .subscribe(
+      (data: User) => {
+        this.user = data;
+        console.log(data);
+      }
+      );
+      this.success = false;
   }
 
   ngOnInit() {
