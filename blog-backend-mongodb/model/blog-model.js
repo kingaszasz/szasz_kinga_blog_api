@@ -12,6 +12,10 @@ const blogSchema = new mongoose.Schema({
     type: Array,
     required: true
   },
+  userid: {
+    type: String,
+    required: true
+  },
   title: {
     type: String,
     required: true
@@ -22,7 +26,7 @@ const blogSchema = new mongoose.Schema({
   },
   comments: {
     type: Array,
-    required: true
+    required: false
   }
 }, {timestamps: true
 });

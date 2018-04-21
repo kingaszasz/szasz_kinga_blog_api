@@ -3,14 +3,16 @@ const User = require('../model/user')
 module.exports = {
     getUser: (req, res) => {
         if (req.user) {
-             res.json({
-            user: req.user,
-            success: `logged in as ${req.user.username}`
-        })
-        } else res.json({
-            user: req.user
-        })
-       
+
+            if (req.user) {
+                 res.json({
+                user: req.user,
+                success: `logged in as ${req.user.username}`
+            })
+            } else res.json({
+                user: req.user
+            })
+        }
     },
 
     register: (req, res, next) => {
@@ -25,7 +27,7 @@ module.exports = {
             }
             res.json({
                 success: 'successfull registration'
-                
+
             });
             res.redirect('/wellcome');
         });

@@ -22,15 +22,15 @@ export class NavComponent implements OnInit {
   
   url = 'http://localhost:3900/user/';
 
-  constructor(public http: HttpClient) {
+  constructor(public http: HttpClient, public http2: Http) {
     this.getUser();
   }
 
   getUser() {
-    this.http.get(this.url)
+    this.http2.get(this.url)
       .subscribe(
-        (data: User) => {
-          this.user = data;
+        (data) => {
+          // this.user = data;
           console.log(data);
         }
       );

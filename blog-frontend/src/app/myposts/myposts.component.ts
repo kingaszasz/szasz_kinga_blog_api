@@ -1,7 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Http } from '@angular/http';
 import { HttpClient } from '@angular/common/http';
-import { NavComponent } from 'nav.component';
+import { NavComponent } from '../nav/nav.component';
+
 
 @Component({
   selector: 'app-myposts',
@@ -9,18 +10,23 @@ import { NavComponent } from 'nav.component';
   styleUrls: ['./myposts.component.css']
 })
 export class MypostsComponent implements OnInit {
-  @Input()  user: User;
+  @Input() user: User;
+  /*user = {
+    username: '',
+    email: '',
+    password: ''
+  };*/
 
   entries: Array<BlogEntry>;
   myEntries: Array<BlogEntry>;
-
-
+  success = false;
 
   blogEntry: BlogEntry = {
     tag: '',
     title: '',
     content: '',
-    comment: []
+    comment: [],
+    onlyMeCanSee: true,
   };
 
   modal: BlogEntry = {
@@ -29,21 +35,31 @@ export class MypostsComponent implements OnInit {
     title: '',
     content: '',
     comment: [],
+    onlyMeCanSee: true,
     createdAt: new Date,
     updatedAt: new Date
   };
+
   url = 'http://localhost:3900/blog/';
+  urlUser = 'http://localhost:3900/user/';
 
   constructor(public http: HttpClient) {
-    this.getAll();
+
+    console.log(this.user);
+    if (localStorage.user) {
+      this.user = JSON.parse(localStorage.user);
+      this.success = true;
+      this.getAll();
     this.getUser();
+
   }
+}
 
   getUser() {
-    this.http.get(this.url)
+    this.http.get(this.urlUser)
       .subscribe(
-        (data: User) => {
-          this.user = data;
+        (data: any) => {
+          //this.user = data;
           console.log(data);
         }
       );
