@@ -25,7 +25,9 @@ module.exports = {
             }
             res.json({
                 success: 'successfull registration'
-            })
+                
+            });
+            res.redirect('/wellcome');
         });
     },
 
