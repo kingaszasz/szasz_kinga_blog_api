@@ -9,12 +9,14 @@ import { HttpClient } from '@angular/common/http';
 export class PublicpostsComponent implements OnInit {
 
   entries: Array<BlogEntry>;
+  publicEntries: Array<BlogEntry>;
 
   blogEntry: BlogEntry = {
     tag: '',
     title: '',
     content: '',
-    comment: []
+    comment: [],
+    onlyMeCanSee: true,
   };
 
   modal: BlogEntry = {
@@ -23,6 +25,7 @@ export class PublicpostsComponent implements OnInit {
     title: '',
     content: '',
     comment: [],
+    onlyMeCanSee: true,
     createdAt: new Date,
     updatedAt: new Date
   };
@@ -36,45 +39,19 @@ export class PublicpostsComponent implements OnInit {
   getAll() {
     this.http.get(this.url).subscribe(
       (data: Array<BlogEntry>) => {
-        console.log(data);
         this.entries = data;
+        this.publicEntries = this.entries.filter(entry => !entry.onlyMeCanSee);
+        console.log(this.publicEntries);
+
       }
     );
-  }
-
-  create() {
-    this.http.post(this.url, this.blogEntry)
-      .subscribe(
-        (data) => {
-          this.getAll();
-        }
-      );
-  }
-
-  delete(id) {
-    if (confirm('Really?')) {
-      this.http.delete(this.url + id)
-        .subscribe(
-          (data) => {
-            this.getAll();
-          }
-        );
-    }
   }
 
   modalChange(id) {
     const choosen = this.entries.filter(entry => entry._id === id)[0];
     this.modal = Object.assign({}, choosen); // a this.modal megkapja egy duplikációját a choosennen
   }
-  update() {
-    this.http.put(this.url + this.modal['_id'], this.modal)
-      .subscribe(
-        (data) => {
-          this.getAll();
-          console.log(this.modal['_id']);
-        }
-      );
-  }
+
 
   ngOnInit() {
   }

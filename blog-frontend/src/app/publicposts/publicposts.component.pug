@@ -1,25 +1,3 @@
-table.table.table-striped
-        thead
-        tr
-            th 
-            th Add tag(s)
-            th Title
-            th Content
-            th 
-       
-        tbody
-            tr
-                th(scope='row') #
-                td 
-                    input#tag.form-control(type="text" name="tag",   [(ngModel)]="blogEntry.tag")
-                td 
-                    input#title.form-control(type="text" name="title",  [(ngModel)]="blogEntry.title")
-                td 
-                    input#content.form-control(type="text" name="content" ,[(ngModel)]="blogEntry.content")
-                td
-                    .btn-group
-                        button.btn.btn-success(type="button", (click)='create()') Add new
-
 .container
     .card-columns
         .card.border-success.mb-3(style='max-width: 18rem;')(*ngFor="let entry of entries ")
@@ -31,15 +9,14 @@ table.table.table-striped
                 p.small.text-muted 
                     | Updated on: {{entry.updatedAt}} 
                     | Created on: {{entry.createdAt}}
-                button.btn.btn-sm.btn-info(type="button" data-toggle='modal', data-target='#updateRow', (click)='modalChange(entry._id)') Change
-                button.btn.btn-sm.btn-dark(type="button", (click)='delete(entry._id)') Delete
-                button.btn.btn-sm.btn-light(type="button", (click)='addComment(entry._id)') Comment
+
+                button.btn.btn-sm.btn-light(type="button", data-toggle='modal', data-target='#comment', (click)='modalChange(entry._id)') Comment
 
 
 
-// *********** MODAL FOR UPDATE ROW
+// *********** MODAL FOR COMMENT
 
-#updateRow.modal.fade(tabindex='-1', role='dialog', aria-labelledby='exampleModalLabel', aria-hidden='true')
+#comment.modal.fade(tabindex='-1', role='dialog', aria-labelledby='exampleModalLabel', aria-hidden='true')
   .modal-dialog(role='document')
     .modal-content
       .modal-header

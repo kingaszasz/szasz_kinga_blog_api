@@ -2,6 +2,7 @@
   interface BlogEntry {
         _id?: String;
         userid?: String;
+        onlyMeCanSee?: Boolean;
         tag: String;
         title: String;
         content: String;

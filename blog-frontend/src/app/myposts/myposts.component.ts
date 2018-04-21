@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Http } from '@angular/http';
 import { HttpClient } from '@angular/common/http';
+import { NavComponent } from 'nav.component';
 
 @Component({
   selector: 'app-myposts',
@@ -8,8 +9,12 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./myposts.component.css']
 })
 export class MypostsComponent implements OnInit {
+  @Input()  user: User;
 
   entries: Array<BlogEntry>;
+  myEntries: Array<BlogEntry>;
+
+
 
   blogEntry: BlogEntry = {
     tag: '',
@@ -31,14 +36,26 @@ export class MypostsComponent implements OnInit {
 
   constructor(public http: HttpClient) {
     this.getAll();
+    this.getUser();
   }
 
-  // feltölti a entries változót a szerverről kapott adatokkal
+  getUser() {
+    this.http.get(this.url)
+      .subscribe(
+        (data: User) => {
+          this.user = data;
+          console.log(data);
+        }
+      );
+  }
+
   getAll() {
     this.http.get(this.url).subscribe(
       (data: Array<BlogEntry>) => {
         console.log(data);
         this.entries = data;
+        this.myEntries = this.entries.filter(entry => ((entry.userid) && entry.userid === this.user._id));
+        console.log(this.myEntries);
       }
     );
   }
