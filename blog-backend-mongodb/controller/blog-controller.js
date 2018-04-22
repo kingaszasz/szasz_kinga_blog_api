@@ -28,7 +28,9 @@ module.exports = {
         res.send(err)
         console.log(err)
       }
-      res.json(post)
+      res.json({
+        success: 'sucessfully created'
+    });
     })
   },
 

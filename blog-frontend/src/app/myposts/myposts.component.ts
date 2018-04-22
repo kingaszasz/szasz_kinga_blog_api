@@ -26,9 +26,6 @@ export class MypostsComponent implements OnInit {
     content: '',
     comment: [],
     onlyMeCanSee: true,
-    // username: this.username,
-    // username: this.loggedInUser.username,
-    username: this.cookieUser
   };
 
   modal: BlogEntry = {
@@ -74,6 +71,8 @@ export class MypostsComponent implements OnInit {
     );
   }
 
+
+  /*
   create() {
     this.http.post(this.url, this.blogEntry)
       .subscribe(
@@ -82,6 +81,22 @@ export class MypostsComponent implements OnInit {
         }
       );
   }
+  */
+ create() {
+  if (this.cookieUser !== '' && this.cookieUser !== 'no user') {
+  this.blogEntry.username = this.cookieUser;
+  console.log(this.blogEntry);
+  this.http.post(this.url, this.blogEntry).subscribe(
+    data => {
+      console.log(data);
+      if (data['success']) {
+        location.reload();
+      }
+    });
+  } else {
+    console.log('Nincs bejelentkezve');
+  }
+}
 
   delete(id) {
     if (confirm('Really?')) {

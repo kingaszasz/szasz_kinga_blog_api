@@ -1,27 +1,62 @@
-table.table.table-striped
+.btn-group(role='group', aria-label='Basic example')
+    button.btn.btn-success(type='button', data-toggle='collapse', data-target='#addNew', aria-expanded='false', aria-controls='collapseExample') Add new post
+    button.btn.btn-secondary(type='button') Show by date
+    button.btn.btn-secondary(type='button') Show by tags
+    button.btn.btn-secondary(type='button') somthing else
+br
+
+#addNew.collapse
+    .card.card-body
+        .input-group.mb-3
+            .input-group-prepend
+                span#inputGroup-sizing-default.input-group-text Title:
+            input.form-control([(ngModel)]="blogEntry.title", type='text', aria-label='title', aria-describedby='inputGroup-sizing-default')
+        .input-group.mb-3
+            .input-group-prepend
+                span#inputGroup-sizing-default.input-group-text Tag(s):
+            input.form-control([(ngModel)]="blogEntry.tag", type='text', aria-label='tags', aria-describedby='inputGroup-sizing-default')
+        .input-group.mb-3
+            .input-group-prepend
+                label.input-group-text(for='inputGroupSelect01') Privacy:
+            select#inputGroupSelect01.custom-select
+                option(selected='') Choose...
+                option(value='private') Private
+                option(value='public') Public
+            
+        .input-group
+            .input-group-prepend
+                span.input-group-text Content:
+            textarea.form-control([(ngModel)]="blogEntry.content", aria-label='With textarea')
+        
+        br
+        button.btn.btn-success(type="button", (click)='create()') Send
+
+
+//       
+    table.table.table-striped
         thead
-        tr
-            th 
-            th Add tag(s)
-            th Title
-            th Content
-            th 
-       
-        tbody
             tr
-                th(scope='row') #
-                td 
-                    input#tag.form-control(type="text" name="tag",   [(ngModel)]="blogEntry.tag")
-                td 
-                    input#title.form-control(type="text" name="title",  [(ngModel)]="blogEntry.title")
-                td 
-                    input#content.form-control(type="text" name="content" ,[(ngModel)]="blogEntry.content")
-                td
-                    .btn-group
+                th 
+                th Add tag(s)
+                th Title
+                th Content
+                th 
+        
+        tbody
+                tr
+                    th(scope='row') #
+                    td 
+                        input#tag.form-control(type="text" name="tag",   [(ngModel)]="blogEntry.tag")
+                    td 
+                        input#title.form-control(type="text" name="title",  [(ngModel)]="blogEntry.title")
+                    td 
+                        input#content.form-control(type="text" name="content" ,[(ngModel)]="blogEntry.content")
+                    td
                         button.btn.btn-success(type="button", (click)='create()') Add new
 
-.container
-    .card-columns
+br
+
+.card-columns
         .card.border-success.mb-3(style='max-width: 18rem;')(*ngFor="let entry of myEntries ")
             .card-header.border-success {{entry.tag}}
             .card-body.text-success

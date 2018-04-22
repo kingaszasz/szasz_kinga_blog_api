@@ -17,7 +17,7 @@ import { WellcomeComponent } from './wellcome/wellcome.component';
 import { PublicpostsComponent } from './publicposts/publicposts.component';
 
 const routes: Routes = [
-  { path: '', component: MypostsComponent, pathMatch: 'full' },
+  { path: '', component: BackgrounComponent, pathMatch: 'full' },
   { component: MypostsComponent, path: 'myposts' },
   { component: DevelopComponent, path: 'develop' },
   { component: BackgrounComponent, path: 'background' },

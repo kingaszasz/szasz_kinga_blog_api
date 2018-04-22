@@ -8,12 +8,6 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./nav.component.css']
 })
 export class NavComponent implements OnInit {
-  static user: any;
-  loggedInUser = {
-    username: '',
-    email: '',
-    password: ''
-  };
   user = {
     username: '',
     email: '',
@@ -25,18 +19,22 @@ export class NavComponent implements OnInit {
     password: ''
   };
   success = false;
+  cookieUser: string;
 
   url = 'http://localhost:3900/user/';
 
   constructor(public http: HttpClient) {
-
+    this.cookieUser = this.getCookie();
+    if (this.success === false && this.cookieUser !== '' && this.cookieUser !== 'no user') {
+      this.user.username = this.cookieUser;
+    }
+    console.log(this.cookieUser, 'type', typeof this.cookieUser);
   }
 
   getUser() {
     this.http.get(this.url)
       .subscribe(
         (data: any) => {
-          this.loggedInUser = data;
           console.log(JSON.parse(data));
         }
       );
@@ -52,6 +50,7 @@ export class NavComponent implements OnInit {
       );
     this.user = this.newuser;
     this.success = true;
+    this.setCookie('username', this.user.username, 1);
   }
 
   login() {
@@ -74,6 +73,8 @@ export class NavComponent implements OnInit {
         }
       );
     this.success = false;
+    this.cookieUser = '';
+    document.cookie = 'username=this.user.username; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/';
   }
 
   setCookie(cname, cvalue, exdays) {
@@ -85,7 +86,7 @@ export class NavComponent implements OnInit {
   ngOnInit() {
   }
 
-  getCookie() {
+  getCookie(): string {
     const name = 'username' + '=';
     const decodedCookie = decodeURIComponent(document.cookie);
     const ca = decodedCookie.split(';');
@@ -95,9 +96,10 @@ export class NavComponent implements OnInit {
             c = c.substring(1);
         }
         if (c.indexOf(name) === 0) {
-            return console.log(c.substring(name.length, c.length)); ;
+            const username = c.substring(name.length, c.length) ;
+            return username;
         }
     }
-    return  console.log('no cookie');
+    return  'no user';
 }
 }

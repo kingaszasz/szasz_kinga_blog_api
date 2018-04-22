@@ -20,11 +20,12 @@ nav.navbar.navbar-expand-lg.navbar-light
 			form.form-inline.my-2.my-lg-0
 				
 				.btn-group.btn-group(role='group')
-					button.btn.btn-light(*ngIf="success==false", data-toggle='modal', data-target='#registerModal') Register
+					button.btn.btn-light(*ngIf="((success==false || !user.username) && (cookieUser == '' || cookieUser == 'no user'))", data-toggle='modal', data-target='#registerModal') Register
 					button.btn.btn-light(*ngIf="success==false", type='button', data-toggle='modal', data-target='#loginModal') LOGIN
 					label(*ngIf="success==true") Wellcome {{user.username}}!  
+					label(*ngIf="(success==false && cookieUser !== '' && cookieUser !== 'no user')") Wellcome back: {{user.username}}!  
 					button.btn.btn-light(*ngIf="success==true", type='button', (click)="logout()") LOGOUT 
-					button.btn.btn-light(*ngIf="success==true", type='button', (click)="getCookie()") Me? 
+ 
 				
 				
 // modal
