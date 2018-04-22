@@ -10,12 +10,6 @@ import { NavComponent } from '../nav/nav.component';
   styleUrls: ['./myposts.component.css']
 })
 export class MypostsComponent implements OnInit {
-  @Input() user: User;
-  /*user = {
-    username: '',
-    email: '',
-    password: ''
-  };*/
 
   entries: Array<BlogEntry>;
   myEntries: Array<BlogEntry>;
@@ -27,6 +21,7 @@ export class MypostsComponent implements OnInit {
     content: '',
     comment: [],
     onlyMeCanSee: true,
+    username: NavComponent.user.username,
   };
 
   modal: BlogEntry = {
@@ -36,6 +31,7 @@ export class MypostsComponent implements OnInit {
     content: '',
     comment: [],
     onlyMeCanSee: true,
+    username: NavComponent.user.username,
     createdAt: new Date,
     updatedAt: new Date
   };
@@ -44,33 +40,16 @@ export class MypostsComponent implements OnInit {
   urlUser = 'http://localhost:3900/user/';
 
   constructor(public http: HttpClient) {
-
-    console.log(this.user);
-    if (localStorage.user) {
-      this.user = JSON.parse(localStorage.user);
-      this.success = true;
-      this.getAll();
-    this.getUser();
-
+    this.getAll();
   }
-}
 
-  getUser() {
-    this.http.get(this.urlUser)
-      .subscribe(
-        (data: any) => {
-          //this.user = data;
-          console.log(data);
-        }
-      );
-  }
 
   getAll() {
     this.http.get(this.url).subscribe(
       (data: Array<BlogEntry>) => {
         console.log(data);
         this.entries = data;
-        this.myEntries = this.entries.filter(entry => ((entry.userid) && entry.userid === this.user._id));
+        this.myEntries = this.entries.filter(entry => ((entry.username) && entry.username === NavComponent.user.username));
         console.log(this.myEntries);
       }
     );

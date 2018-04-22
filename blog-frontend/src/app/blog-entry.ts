@@ -1,12 +1,12 @@
 
-  interface BlogEntry {
-        _id?: String;
-        userid?: String;
-        onlyMeCanSee?: Boolean;
-        tag: String;
-        title: String;
-        content: String;
-        comment: Array<object>;
-        createdAt?: Date;
-        updatedAt?: Date;
-    }
+interface BlogEntry {
+    tag: String;
+    title: String;
+    content: String;
+    comment: Array<object>;
+    _id?: String;
+    username?: String;
+    onlyMeCanSee?: Boolean;
+    createdAt?: Date;
+    updatedAt?: Date;
+}

@@ -1,14 +1,24 @@
 const User = require('../model/user')
 
 module.exports = {
+    list: (req, res) => {
+        User.find({}, (err, post) => {
+            if (err) {
+                res.send(err)
+                console.log(err)
+            }
+            res.json(post)
+        })
+    },
+
     getUser: (req, res) => {
         if (req.user) {
 
             if (req.user) {
-                 res.json({
-                user: req.user,
-                success: `logged in as ${req.user.username}`
-            })
+                res.json({
+                    user: req.user,
+                    success: `logged in as ${req.user.username}`
+                })
             } else res.json({
                 user: req.user
             })
@@ -44,6 +54,17 @@ module.exports = {
         res.json({
             success: 'successfull logout'
         })
-    }
+    },
+
+    // Delete a user with the specified userId in the request
+    remove: (req, res) => {
+        User.findByIdAndRemove(req.params.id, (err, data) => {
+          if (err) {
+            res.send(err)
+            console.log(err)
+          }
+          res.json(data)
+        })
+      }
 
 }

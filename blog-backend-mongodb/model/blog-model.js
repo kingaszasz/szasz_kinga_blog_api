@@ -12,7 +12,7 @@ const blogSchema = new mongoose.Schema({
     type: Array,
     required: true
   },
-  userid: {
+  username: {
     type: String,
     required: true
   },
