@@ -11,13 +11,6 @@ export class PublicpostsComponent implements OnInit {
   entries: Array<BlogEntry>;
   publicEntries: Array<BlogEntry>;
 
-  blogEntry: BlogEntry = {
-    tag: '',
-    title: '',
-    content: '',
-    comment: [],
-    onlyMeCanSee: true,
-  };
 
   modal: BlogEntry = {
     _id: '',
@@ -25,10 +18,10 @@ export class PublicpostsComponent implements OnInit {
     title: '',
     content: '',
     comment: [],
-    onlyMeCanSee: true,
     createdAt: new Date,
     updatedAt: new Date
   };
+
   url = 'http://localhost:3900/blog/';
 
   constructor(public http: HttpClient) {
@@ -40,7 +33,7 @@ export class PublicpostsComponent implements OnInit {
     this.http.get(this.url).subscribe(
       (data: Array<BlogEntry>) => {
         this.entries = data;
-        this.publicEntries = this.entries.filter(entry => !entry.onlyMeCanSee);
+        this.publicEntries = this.entries.filter(entry => (!entry.onlyMeCanSee || entry.onlyMeCanSee === false ));
         console.log(this.publicEntries);
 
       }

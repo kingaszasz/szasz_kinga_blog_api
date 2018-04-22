@@ -27,6 +27,10 @@ const blogSchema = new mongoose.Schema({
   comments: {
     type: Array,
     required: false
+  },
+  onlyMeCanSee: {
+    type: Boolean,
+    required: true,
   }
 }, {timestamps: true
 });

@@ -1,6 +1,6 @@
 .container
     .card-columns
-        .card.border-success.mb-3(style='max-width: 18rem;')(*ngFor="let entry of entries ")
+        .card.border-success.mb-3(style='max-width: 18rem;')(*ngFor="let entry of publicEntries")
             .card-header.border-success {{entry.tag}}
             .card-body.text-success
                 h5.card-title {{entry.title}}

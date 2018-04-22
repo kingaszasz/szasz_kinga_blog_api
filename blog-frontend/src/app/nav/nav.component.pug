@@ -24,6 +24,7 @@ nav.navbar.navbar-expand-lg.navbar-light
 					button.btn.btn-light(*ngIf="success==false", type='button', data-toggle='modal', data-target='#loginModal') LOGIN
 					label(*ngIf="success==true") Wellcome {{user.username}}!  
 					button.btn.btn-light(*ngIf="success==true", type='button', (click)="logout()") LOGOUT 
+					button.btn.btn-light(*ngIf="success==true", type='button', (click)="getCookie()") Me? 
 				
 				
 // modal

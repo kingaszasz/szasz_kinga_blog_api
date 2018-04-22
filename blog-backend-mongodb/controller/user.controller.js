@@ -45,8 +45,10 @@ module.exports = {
 
     login: (req, res) => {
         res.json({
-            success: 'successfull login'
-        })
+            success: 'Belépve',
+            userName: req.user.username,
+            id: req.user._id
+        });
     },
 
     logout: (req, res) => {
@@ -59,12 +61,12 @@ module.exports = {
     // Delete a user with the specified userId in the request
     remove: (req, res) => {
         User.findByIdAndRemove(req.params.id, (err, data) => {
-          if (err) {
-            res.send(err)
-            console.log(err)
-          }
-          res.json(data)
+            if (err) {
+                res.send(err)
+                console.log(err)
+            }
+            res.json(data)
         })
-      }
+    }
 
 }

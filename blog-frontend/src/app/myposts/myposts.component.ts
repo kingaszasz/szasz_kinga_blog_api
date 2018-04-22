@@ -1,7 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Http } from '@angular/http';
 import { HttpClient } from '@angular/common/http';
-import { NavComponent } from '../nav/nav.component';
 
 
 @Component({
@@ -11,9 +10,15 @@ import { NavComponent } from '../nav/nav.component';
 })
 export class MypostsComponent implements OnInit {
 
+  loggedInUser = {
+    username: '',
+    email: '',
+    password: ''
+  };
+  cookieUser: string;
+
   entries: Array<BlogEntry>;
   myEntries: Array<BlogEntry>;
-  success = false;
 
   blogEntry: BlogEntry = {
     tag: '',
@@ -21,7 +26,9 @@ export class MypostsComponent implements OnInit {
     content: '',
     comment: [],
     onlyMeCanSee: true,
-    username: NavComponent.user.username,
+    // username: this.username,
+    // username: this.loggedInUser.username,
+    username: this.cookieUser
   };
 
   modal: BlogEntry = {
@@ -30,8 +37,8 @@ export class MypostsComponent implements OnInit {
     title: '',
     content: '',
     comment: [],
+    username: this.cookieUser,
     onlyMeCanSee: true,
-    username: NavComponent.user.username,
     createdAt: new Date,
     updatedAt: new Date
   };
@@ -40,16 +47,28 @@ export class MypostsComponent implements OnInit {
   urlUser = 'http://localhost:3900/user/';
 
   constructor(public http: HttpClient) {
+    this.cookieUser = this.getCookie();
+        console.log(this.cookieUser, 'type', typeof this.cookieUser);
     this.getAll();
+    this.getUser();
   }
 
+  getUser() {
+    this.http.get(this.url)
+      .subscribe(
+        (data: any) => {
+          this.loggedInUser = data;
+          console.log(data);
+        }
+      );
+  }
 
   getAll() {
     this.http.get(this.url).subscribe(
       (data: Array<BlogEntry>) => {
         console.log(data);
         this.entries = data;
-        this.myEntries = this.entries.filter(entry => ((entry.username) && entry.username === NavComponent.user.username));
+        this.myEntries = this.entries.filter(entry => ((entry.username) && entry.username === this.getCookie()));
         console.log(this.myEntries);
       }
     );
@@ -89,6 +108,22 @@ export class MypostsComponent implements OnInit {
       );
   }
 
+  getCookie(): string {
+    const name = 'username' + '=';
+    const decodedCookie = decodeURIComponent(document.cookie);
+    const ca = decodedCookie.split(';');
+    for (let i = 0; i < ca.length; i++) {
+        let c = ca[i];
+        while (c.charAt(0) === ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) === 0) {
+            const username = c.substring(name.length, c.length) ;
+            return username;
+        }
+    }
+    return  'no user';
+}
   ngOnInit() {
   }
 }
