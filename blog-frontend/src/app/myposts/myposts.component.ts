@@ -45,7 +45,7 @@ export class MypostsComponent implements OnInit {
 
   constructor(public http: HttpClient) {
     this.cookieUser = this.getCookie();
-        console.log(this.cookieUser, 'type', typeof this.cookieUser);
+    console.log(this.cookieUser, 'type', typeof this.cookieUser);
     this.getAll();
     this.getUser();
   }
@@ -83,15 +83,14 @@ export class MypostsComponent implements OnInit {
   }
   */
  create() {
+  this.cookieUser = this.getCookie();
   if (this.cookieUser !== '' && this.cookieUser !== 'no user') {
   this.blogEntry.username = this.cookieUser;
   console.log(this.blogEntry);
   this.http.post(this.url, this.blogEntry).subscribe(
     data => {
       console.log(data);
-      if (data['success']) {
-        location.reload();
-      }
+      this.getAll();
     });
   } else {
     console.log('Nincs bejelentkezve');
