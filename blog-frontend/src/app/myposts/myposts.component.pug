@@ -18,10 +18,10 @@ br
         .input-group.mb-3
             .input-group-prepend
                 label.input-group-text(for='inputGroupSelect01') Privacy:
-            select#inputGroupSelect01.custom-select
+            select#inputGroupSelect01.custom-select([(ngModel)]="blogEntry.onlyMeCanSee")
                 option(selected='') Choose...
-                option(value='private') Private
-                option(value='public') Public
+                option(value='true') Private
+                option(value='false') Public
             
         .input-group
             .input-group-prepend
@@ -29,30 +29,8 @@ br
             textarea.form-control([(ngModel)]="blogEntry.content", aria-label='With textarea')
         
         br
-        button.btn.btn-success(type="button", (click)='create()') Send
-
-
-//       
-    table.table.table-striped
-        thead
-            tr
-                th 
-                th Add tag(s)
-                th Title
-                th Content
-                th 
-        
-        tbody
-                tr
-                    th(scope='row') #
-                    td 
-                        input#tag.form-control(type="text" name="tag",   [(ngModel)]="blogEntry.tag")
-                    td 
-                        input#title.form-control(type="text" name="title",  [(ngModel)]="blogEntry.title")
-                    td 
-                        input#content.form-control(type="text" name="content" ,[(ngModel)]="blogEntry.content")
-                    td
-                        button.btn.btn-success(type="button", (click)='create()') Add new
+        button.btn.btn-success(type="sumbmit", (click)='create()', data-toggle='collapse', data-target='#addNew', aria-controls='collapseExample') Send
+        button.btn.btn-secondary(type="button", data-toggle='collapse', data-target='#addNew', aria-controls='collapseExample') close
 
 br
 
@@ -82,17 +60,27 @@ br
         button.close(type='button', data-dismiss='modal', aria-label='Close')
           span(aria-hidden='true') ×
       .modal-body
-        .form-group
-          label(for="text") Tag(s)
-          input#text.form-control(type="text" name="type" ,[(ngModel)]="modal.tag")
-        .form-group
-          label(for="important") Title
-          input#important.form-control(type="text" name="title" ,[(ngModel)]="modal.title")
-        .form-group
-          label(for="done") Content
-          input#done.form-control(type="text" name="done" ,[(ngModel)]="modal.content")
-        p Created: {{modal.createdAt}}
-        p Last update: {{modal.updatedAt}}
+        .input-group.mb-3
+            .input-group-prepend
+                span#inputGroup-sizing-default.input-group-text Title:
+            input.form-control([(ngModel)]="modal.title", type='text', aria-label='title', aria-describedby='inputGroup-sizing-default')
+        .input-group.mb-3
+            .input-group-prepend
+                span#inputGroup-sizing-default.input-group-text Tag(s):
+            input.form-control([(ngModel)]="modal.tag", type='text', aria-label='tags', aria-describedby='inputGroup-sizing-default')
+        .input-group.mb-3
+            .input-group-prepend
+                label.input-group-text(for='inputGroupSelect01') Privacy:
+            select#inputGroupSelect01.custom-select([(ngModel)]="modal.onlyMeCanSee")
+                option(selected='') Choose...
+                option(value='true') Private
+                option(value='false') Public
+            
+        .input-group
+            .input-group-prepend
+                span.input-group-text Content:
+            textarea.form-control([(ngModel)]="modal.content", aria-label='With textarea')
+
       .modal-footer
         button.btn.btn-secondary(type='button', data-dismiss='modal') Close
         button.btn.btn-primary(type='button', data-dismiss='modal', (click)='update()') Save

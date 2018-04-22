@@ -72,30 +72,26 @@ export class MypostsComponent implements OnInit {
   }
 
 
-  /*
   create() {
-    this.http.post(this.url, this.blogEntry)
-      .subscribe(
-        (data) => {
+    this.cookieUser = this.getCookie();
+    if (this.cookieUser !== '' && this.cookieUser !== 'no user') {
+      this.blogEntry.username = this.cookieUser;
+      this.http.post(this.url, this.blogEntry).subscribe(
+        data => {
+          console.log(data);
+          this.blogEntry = {
+            tag: '',
+            title: '',
+            content: '',
+            comment: [],
+            onlyMeCanSee: true,
+          };
           this.getAll();
-        }
-      );
+        });
+    } else {
+      console.log('Nincs bejelentkezve');
+    }
   }
-  */
- create() {
-  this.cookieUser = this.getCookie();
-  if (this.cookieUser !== '' && this.cookieUser !== 'no user') {
-  this.blogEntry.username = this.cookieUser;
-  console.log(this.blogEntry);
-  this.http.post(this.url, this.blogEntry).subscribe(
-    data => {
-      console.log(data);
-      this.getAll();
-    });
-  } else {
-    console.log('Nincs bejelentkezve');
-  }
-}
 
   delete(id) {
     if (confirm('Really?')) {
@@ -127,17 +123,17 @@ export class MypostsComponent implements OnInit {
     const decodedCookie = decodeURIComponent(document.cookie);
     const ca = decodedCookie.split(';');
     for (let i = 0; i < ca.length; i++) {
-        let c = ca[i];
-        while (c.charAt(0) === ' ') {
-            c = c.substring(1);
-        }
-        if (c.indexOf(name) === 0) {
-            const username = c.substring(name.length, c.length) ;
-            return username;
-        }
+      let c = ca[i];
+      while (c.charAt(0) === ' ') {
+        c = c.substring(1);
+      }
+      if (c.indexOf(name) === 0) {
+        const username = c.substring(name.length, c.length);
+        return username;
+      }
     }
-    return  'no user';
-}
+    return 'no user';
+  }
   ngOnInit() {
   }
 }
