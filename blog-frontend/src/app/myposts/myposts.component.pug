@@ -1,8 +1,8 @@
 .btn-group(role='group', aria-label='Basic example')
     button.btn.btn-success(type='button', data-toggle='collapse', data-target='#addNew', aria-expanded='false', aria-controls='collapseExample') Add new post
-    button.btn.btn-secondary(type='button') Show by date
-    button.btn.btn-secondary(type='button') Show by tags
-    button.btn.btn-secondary(type='button') somthing else
+    button.btn.btn-secondary(type='button', (click)='showPublic()') Public only
+    button.btn.btn-secondary(type='button',  (click)='showPrivate()') Private only
+    button.btn.btn-secondary(type='button', (click)='getAll()') Show all
 br
 
 #addNew.collapse
@@ -30,7 +30,7 @@ br
         
         br
         button.btn.btn-success(type="sumbmit", (click)='create()', data-toggle='collapse', data-target='#addNew', aria-controls='collapseExample') Send
-        button.btn.btn-secondary(type="button", data-toggle='collapse', data-target='#addNew', aria-controls='collapseExample') close
+        button.btn.btn-secondary(type="button", data-toggle='collapse', data-target='#addNew', aria-controls='collapseExample') Close
 
 br
 
@@ -44,15 +44,15 @@ br
                 p.small.text-muted 
                     | Updated on: {{entry.updatedAt}} 
                     | Created on: {{entry.createdAt}}
-                button.btn.btn-sm.btn-info(type="button" data-toggle='modal', data-target='#updateRow', (click)='modalChange(entry._id)') Change
+                button.btn.btn-sm.btn-info(type="button" data-toggle='modal', data-target='#updatePost', (click)='modalChange(entry._id)') Change
                 button.btn.btn-sm.btn-dark(type="button", (click)='delete(entry._id)') Delete
                 button.btn.btn-sm.btn-light(type="button", (click)='addComment(entry._id)') Comment
 
 
 
-// *********** MODAL FOR UPDATE ROW
+// *********** MODAL FOR UPDATE post
 
-#updateRow.modal.fade(tabindex='-1', role='dialog', aria-labelledby='exampleModalLabel', aria-hidden='true')
+#updatePost.modal.fade(tabindex='-1', role='dialog', aria-labelledby='exampleModalLabel', aria-hidden='true')
   .modal-dialog(role='document')
     .modal-content
       .modal-header

@@ -20,6 +20,8 @@ export class MypostsComponent implements OnInit {
   entries: Array<BlogEntry>;
   myEntries: Array<BlogEntry>;
 
+  showMyPublic = true;
+
   blogEntry: BlogEntry = {
     tag: '',
     title: '',
@@ -41,36 +43,43 @@ export class MypostsComponent implements OnInit {
   };
 
   url = 'http://localhost:3900/blog/';
-  urlUser = 'http://localhost:3900/user/';
+
 
   constructor(public http: HttpClient) {
     this.cookieUser = this.getCookie();
     console.log(this.cookieUser, 'type', typeof this.cookieUser);
     this.getAll();
-    this.getUser();
+
   }
 
-  getUser() {
-    this.http.get(this.url)
-      .subscribe(
-        (data: any) => {
-          this.loggedInUser = data;
-          console.log(data);
-        }
-      );
-  }
 
   getAll() {
     this.http.get(this.url).subscribe(
       (data: Array<BlogEntry>) => {
-        console.log(data);
         this.entries = data;
         this.myEntries = this.entries.filter(entry => ((entry.username) && entry.username === this.getCookie()));
-        console.log(this.myEntries);
       }
     );
   }
 
+  showPublic() {
+    this.http.get(this.url).subscribe(
+      (data: Array<BlogEntry>) => {
+        this.entries = data;
+        // tslint:disable-next-line:max-line-length
+        this.myEntries = this.entries.filter(entry => ((entry.username) && entry.username === this.getCookie() && entry.onlyMeCanSee === false));
+      }
+    );
+  }
+
+  showPrivate() {
+    this.http.get(this.url).subscribe(
+      (data: Array<BlogEntry>) => {
+        this.entries = data;
+        // tslint:disable-next-line:max-line-length
+        this.myEntries = this.entries.filter(entry => ((entry.username) && entry.username === this.getCookie() && entry.onlyMeCanSee === true));
+      }
+    );  }
 
   create() {
     this.cookieUser = this.getCookie();
