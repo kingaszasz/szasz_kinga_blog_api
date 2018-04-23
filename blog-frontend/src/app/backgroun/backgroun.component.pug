@@ -1,2 +1,118 @@
-p backgroun works!
+.row
+    .col-md-12.col-lg-4 
+        img.img-thumbnail(src='/assets/img/kinga.jpg', alt='picture of developer')
+
+    .col-md-12.col-lg-8 
+        br
+        h3 Kinga Anna Szász
+        p 
+            | Born on 13 th March 1977., mother of two children
+            br
+            | ... future developer :)
+
+
+        #accordion
+            .card
+                #headingOne.card-header
+                    h5.mb-0
+                        button.btn.btn-link(data-toggle='collapse', data-target='#collapseOne', aria-expanded='false' , aria-controls='collapseOne')
+                            | Education
+                #collapseOne.collapse.show(aria-labelledby='headingOne', data-parent='#accordion')
+                    .card-body
+                        p
+                            strong 2018: YellowRoad 
+                            | - junior FrontEnd developer course
+                            br
+                            strong 2003: Course of graphical design programs
+                            |  (Adobe Photoshop, Adbrobe Illustrator, Quark)
+                            br
+                            strong 2002: Budapest Business College
+                            |  /Budapesti Gazdasági Főiskola/
+                            br
+                            | Bachelor of Science (B.S.), Course of Intentional Communication - Marketing
+                            br
+                            | Communication, Advertising
+                            br
+                            strong 1996: Neumann János High School
+                            |  of
+                            br
+                            | Computer Sciences and Information Technologies
+
+            .card
+                #headingTwo.card-header
+                    h5.mb-0
+                        button.btn.btn-link.collapsed(data-toggle='collapse', data-target='#collapseTwo', aria-expanded='false', aria-controls='collapseTwo')
+                            | Previous work experience
+                #collapseTwo.collapse(aria-labelledby='headingTwo', data-parent='#accordion')
+                    .card-body
+                        | I have more than 24 years of work experience, starting from summer jobs 
+                        br
+                        | like McDonald’s at 16, to half a dozen 
+                        strong account / key account / client service  
+                        br
+                        | and 
+                        strong marketing manager 
+                        | positions in many different fields 
+                        br
+                        | like: full service advertising, direct mail, print production, event marketing, etc. 
+                        br
+                        | I have also a 3 years of experience in self employed freelancing, 
+                        br
+                        | as 
+                        strong graphic designer 
+                        | (you may check out some of my references: 
+                        br
+                        | https://www.pinterest.com/kingus77/).
+                        br
+                        br
+                        | Now ready for the third biggest change in my life :)
+
+            .card
+                #headingThree.card-header
+                    h5.mb-0
+                        button.btn.btn-link.collapsed(data-toggle='collapse', data-target='#collapseThree', aria-expanded='false', aria-controls='collapseThree')
+                            | Personal qualities
+                #collapseThree.collapse(aria-labelledby='headingThree', data-parent='#accordion')
+                    .card-body
+                        ul
+                            strong Strengths: 
+                            br
+                            | Positive personality, communicative, good team player
+                            br
+                            | Efficient, well organized, focused on goal
+                            br
+                            | Open-minded, creative, problem solving oriented
+                            br
+                            br
+
+                            strong Still needs to work on:
+                            br
+                            | Stress tolerance
+                            br
+                            | Presentation skills
+                            br
+                            | Handle endless options and choices
+            .card
+                #headingFour.card-header
+                    h5.mb-0
+                        button.btn.btn-link.collapsed(data-toggle='collapse', data-target='#collapseFour', aria-expanded='false', aria-controls='collapseFour')
+                            | Vision
+                #collapseFour.collapse(aria-labelledby='headingFour', data-parent='#accordion')
+                    .card-body
+                        | In short term I would like to start 
+                        strong deepening my knowledge 
+                        | in practice in any of the fields learned at YellowRoad.
+                        br
+                        | In 4-5 years to become a 
+                        strong senior developer 
+                        | in one - two fields.
+                        br
+                        | Also 
+                        strong IT project management 
+                        | is a perspective in loger therms.
+
+                        
+
+        
+
 

@@ -2,8 +2,26 @@ section.header
     .container
         .jumbotron.jumbotron-fluid
             .container
-                h1.display-4 MyBlog
-                p.lead A very simple app to collect your thoughts about anything
+                .row
+                    .col-md-12.col-lg-9
+                        h1.display-4 MyBlog
+                        p.lead A very simple app to collect your thoughts about anything
+
+                    .col-md-12.col-lg-3
+                        section.social
+                            br
+                            h4
+                                | We 🎔 new friends!
+                            a(href='http://twitter.com', target='_blank')
+                                h2.tw
+                                    i.fab.fa-twitter
+                            a(href='https://www.facebook.com/', target='_blank')
+                                h2.fb
+                                    i.fab.fa-facebook-f
+                            a(href='https://plus.google.com/discover', target='_blank')
+                                h2.gplus
+                                    i.fab.fa-google-plus-g
+                            
 section.nav
     .container
         app-nav

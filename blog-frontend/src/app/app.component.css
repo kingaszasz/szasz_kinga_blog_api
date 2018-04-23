@@ -9,4 +9,39 @@ section.footer {
     color: whitesmoke;
 }
 
+/*---- social SECTION ------------------*/
 
+
+section.social h2.fb {
+    background-color: #3b5998;
+}
+
+section.social h2.fb:hover {
+    background-color: #8b9dc3;
+}
+
+section.social h2.tw {
+    background-color: #00aced;
+}
+
+section.social h2.tw:hover {
+    background-color: #0084b4;
+}
+
+section.social h2.gplus {
+    background-color: #d34836;
+}
+
+section.social h2.gplus:hover {
+    background-color: #DA6354;
+}
+
+section.social h2 {
+    border-radius: 50%;
+    color: white;
+    margin: 0;
+    padding: 13px 13px 13px 13px;
+    display: inline-block;
+    width: 60px;
+    height: 60px;
+}

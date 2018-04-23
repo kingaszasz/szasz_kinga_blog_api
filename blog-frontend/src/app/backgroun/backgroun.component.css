@@ -1,0 +1,17 @@
+img.img-thumbnail {
+    border-radius: 2%
+}
+
+.card-header {
+    background-color: 	 #ebfafa;
+}
+.card-header:hover {
+    background-color: #d6f5f5;
+
+}
+
+.card-header>h5>button {
+    color: #006666;
+    text-decoration: none
+}
+
