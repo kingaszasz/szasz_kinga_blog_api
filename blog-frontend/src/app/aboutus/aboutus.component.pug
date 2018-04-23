@@ -1,12 +1,14 @@
+h3 ...under construction...
+
 .container
     .card-columns
-        .card.border-success.mb-3(style='max-width: 18rem;')(*ngFor="let user of users ")
-            .card-header.border-success {{user._id}}
-            .card-body.text-success
+        .card.card.text-white.bg-info.mb-3(style='max-width: 18rem;')(*ngFor="let user of users ")
+            .card-header {{user._id}}
+            .card-body
                 h5.card-title {{user.username}}
-                p.card-text.text-success {{user.email}} 
-            .card-footer.bg-transparent.border-success
+                p.card-text {{user.email}} 
+            .card-footer
                 p.small.text-muted last enterred on: ... 
-                button.btn.btn-sm.btn-dark(type="button", (click)='delete(user._id)') Delete
+                button.btn.btn-sm.btn-light(type="button", (click)='delete(user._id)') Delete
 
 

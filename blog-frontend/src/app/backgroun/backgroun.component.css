@@ -2,6 +2,11 @@ img.img-thumbnail {
     border-radius: 2%
 }
 
+h3 {
+    font-family: 'Rock Salt', cursive;
+}
+
+
 .card-header {
     background-color: 	 #ebfafa;
 }

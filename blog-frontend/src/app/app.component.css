@@ -4,6 +4,10 @@ section.header,
     color: whitesmoke;
 }
 
+h1.display-4  {
+    font-family: 'Rock Salt', cursive;
+}
+
 section.footer {
     background-color: #004d4d;
     color: whitesmoke;

@@ -1,0 +1,13 @@
+h3 {
+  font-family: 'Rock Salt', cursive;
+  text-align: center;
+}
+
+p {
+    text-align: center;
+}
+
+.logo {
+  width: 180px;
+  margin: 5px;
+}

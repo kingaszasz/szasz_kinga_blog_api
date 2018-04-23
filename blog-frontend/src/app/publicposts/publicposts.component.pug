@@ -1,11 +1,11 @@
 .container
-    .card-columns
-        .card.border-success.mb-3(style='max-width: 18rem;')(*ngFor="let entry of publicEntries")
-            .card-header.border-success {{entry.tag}}
-            .card-body.text-success
+    .card-columns.col-md-12
+        .card.border-info.mb-3(style='max-width: 18rem;')(*ngFor="let entry of publicEntries")
+            .card-header.border-info {{entry.tag}}
+            .card-body
                 h5.card-title {{entry.title}}
-                p.card-text.text-success {{entry.content}} 
-            .card-footer.bg-transparent.border-success
+                p.card-text {{entry.content}} 
+            .card-footer.bg-transparent.border-info
                 p.small.text-muted 
                     | Updated on: {{entry.updatedAt}} 
                     | Created on: {{entry.createdAt}}

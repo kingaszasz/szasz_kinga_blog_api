@@ -1,0 +1,11 @@
+.card-header.border-info {
+  background-color: darkcyan;
+  color: white;
+}
+
+.card-body>h5,
+.card-body>p  {
+  color: darkcyan;
+}
+
+
