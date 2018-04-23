@@ -1,9 +1,20 @@
-.container
-    .jumbotron.jumbotron-fluid
-        .container
-            h1.display-4 MyBlog
-            p.lead A very simple app to collect your thoughts about anything
-    app-nav
+section.header
+    .container
+        .jumbotron.jumbotron-fluid
+            .container
+                h1.display-4 MyBlog
+                p.lead A very simple app to collect your thoughts about anything
+section.nav
+    .container
+        app-nav
+br
 
-.container
-    router-outlet
+section.body
+    .container
+        router-outlet
+br
+
+section.footer 
+    .container       
+        app-footer
+

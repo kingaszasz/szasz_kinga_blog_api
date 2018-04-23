@@ -1,0 +1,23 @@
+.modal-content {
+    color: darkcyan;
+}
+
+a#modalPrivacy,
+a#modalTerms,
+a#modalFAQ,
+a#modalContact {
+    color: #e6ffff;
+}
+
+a#modalPrivacy:hover,
+a#modalTerms:hover,
+a#modalFAQ:hover, 
+a#modalContact:hover {
+    color: 	 #001a1a;
+}
+
+#kep2,
+#kep3 {
+    width: 180px;
+    margin: 5px;
+}

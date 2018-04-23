@@ -1,0 +1,94 @@
+br
+.container.text-center
+    .row
+      .col-lg-12
+        a#modalContact(data-toggle='modal', data-target='#Contact') Contact 
+        a#modalPrivacy(data-toggle='modal', data-target='#Privacy') Privacy 
+        a#modalTerms(data-toggle='modal', data-target='#Terms') Terms 
+        a#modalFAQ(data-toggle='modal', data-target='#FAQ') FAQ 
+        br
+        br
+        p Our app is available on any mobile device! Download now to get started!
+        br
+        .row.justify-content-center
+          .col-12.col-sm-5.col-md-4.col-lg-2
+            a(href='https://www.apple.com/hu/ios/app-store/')
+              img#kep2(src='/assets/img/app-store-badge.svg', alt='appstore')
+          .col-12.col-sm-5.col-md-4.col-lg-2
+            a(href='https://play.google.com/store')
+              img#kep3(src='/assets/img/google-play-badge.svg', alt='google')
+        br
+        p © MyBlog 2018. All Rights Reserved.
+
+// *********** MODALS
+
+#Contact.modal.fade(tabindex='-1', role='dialog', aria-labelledby='exampleModalLabel', aria-hidden='true')
+  .modal-dialog(role='document')
+    .modal-content
+      .modal-header
+        h5#exampleModalLabel.modal-title Contact:
+      .modal-body
+        p
+          | Szász Anna Kinga
+          br
+          | kingus77@gmail.com
+          br   
+          | Tel.:  +36 70 318 3213 
+          br 
+          | 1224 Budapest, III. u. 17.
+          br
+          | Skype: szaszannakinga
+          
+      .modal-footer
+        button.btn.btn-info(type='button', data-dismiss='modal') Close
+
+
+#Privacy.modal.fade(tabindex='-1', role='dialog', aria-labelledby='exampleModalLabel', aria-hidden='true')
+  .modal-dialog(role='document')
+    .modal-content
+      .modal-header
+        h5#exampleModalLabel.modal-title Privacy
+      .modal-body
+         p
+          | Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolore debitis commodi adipisci, sapiente, laborum harum eaque impedit ut in consequuntur sed soluta nemo ea esse nihil expedita pariatur corrupti molestiae!
+          br
+          br
+          | Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolore debitis commodi adipisci, sapiente, laborum harum eaque impedit ut in consequuntur sed soluta nemo ea esse nihil expedita pariatur corrupti molestiae!
+          br 
+          br
+          | Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolore debitis commodi adipisci, sapiente, laborum harum eaque impedit ut in consequuntur sed soluta nemo ea esse nihil expedita pariatur corrupti molestiae!
+      .modal-footer
+        button.btn.btn-info(type='button', data-dismiss='modal') Close
+
+
+#FAQ.modal.fade(tabindex='-1', role='dialog', aria-labelledby='exampleModalLabel', aria-hidden='true')
+  .modal-dialog(role='document')
+    .modal-content
+      .modal-header
+        h5#exampleModalLabel.modal-title FAQ
+      .modal-body
+        #d08c1344_1524472781.powr-faq
+      .modal-footer
+        button.btn.btn-info(type='button', data-dismiss='modal') Close
+
+
+#Terms.modal.fade(tabindex='-1', role='dialog', aria-labelledby='exampleModalLabel', aria-hidden='true')
+  .modal-dialog(role='document')
+    .modal-content
+      .modal-header
+        h5#exampleModalLabel.modal-title Terms:
+      .modal-body
+        p
+          | Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolore debitis commodi adipisci, sapiente, laborum harum eaque impedit ut in consequuntur sed soluta nemo ea esse nihil expedita pariatur corrupti molestiae!
+          br
+          br
+          | Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolore debitis commodi adipisci, sapiente, laborum harum eaque impedit ut in consequuntur sed soluta nemo ea esse nihil expedita pariatur corrupti molestiae!
+          br 
+          br
+          | Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolore debitis commodi adipisci, sapiente, laborum harum eaque impedit ut in consequuntur sed soluta nemo ea esse nihil expedita pariatur corrupti molestiae!
+      .modal-footer
+        button.btn.btn-info(type='button', data-dismiss='modal') Close
+
+
+
+

@@ -15,6 +15,7 @@ import { BackgrounComponent } from './backgroun/backgroun.component';
 import { MypostsComponent } from './myposts/myposts.component';
 import { WellcomeComponent } from './wellcome/wellcome.component';
 import { PublicpostsComponent } from './publicposts/publicposts.component';
+import { FooterComponent } from './footer/footer.component';
 
 const routes: Routes = [
   { path: '', component: BackgrounComponent, pathMatch: 'full' },
@@ -37,7 +38,8 @@ const routes: Routes = [
     BackgrounComponent,
     MypostsComponent,
     WellcomeComponent,
-    PublicpostsComponent
+    PublicpostsComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

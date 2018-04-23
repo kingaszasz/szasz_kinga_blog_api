@@ -1,0 +1,12 @@
+section.header, 
+.jumbotron.jumbotron-fluid {
+    background-color: #008b8b;
+    color: whitesmoke;
+}
+
+section.footer {
+    background-color: #004d4d;
+    color: whitesmoke;
+}
+
+

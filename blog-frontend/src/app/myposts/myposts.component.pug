@@ -1,8 +1,8 @@
 .btn-group(role='group', aria-label='Basic example')
-    button.btn.btn-success(type='button', data-toggle='collapse', data-target='#addNew', aria-expanded='false', aria-controls='collapseExample') Add new post
-    button.btn.btn-secondary(type='button', (click)='showPublic()') Public only
-    button.btn.btn-secondary(type='button',  (click)='showPrivate()') Private only
-    button.btn.btn-secondary(type='button', (click)='getAll()') Show all
+    button.btn.btn-info(type='button', data-toggle='collapse', data-target='#addNew', aria-expanded='false', aria-controls='collapseExample') Add new post
+    button.btn.btn-info(type='button', (click)='showPublic()') Public only
+    button.btn.btn-info(type='button',  (click)='showPrivate()') Private only
+    button.btn.btn-info(type='button', (click)='getAll()') Show all
 br
 
 #addNew.collapse
@@ -29,8 +29,8 @@ br
             textarea.form-control([(ngModel)]="blogEntry.content", aria-label='With textarea')
         
         br
-        button.btn.btn-success(type="sumbmit", (click)='create()', data-toggle='collapse', data-target='#addNew', aria-controls='collapseExample') Send
-        button.btn.btn-secondary(type="button", data-toggle='collapse', data-target='#addNew', aria-controls='collapseExample') Close
+        button.btn.btn-info(type="sumbmit", (click)='create()', data-toggle='collapse', data-target='#addNew', aria-controls='collapseExample') Send
+        button.btn.btn-light(type="button", data-toggle='collapse', data-target='#addNew', aria-controls='collapseExample') Close
 
 br
 
@@ -82,7 +82,7 @@ br
             textarea.form-control([(ngModel)]="modal.content", aria-label='With textarea')
 
       .modal-footer
-        button.btn.btn-secondary(type='button', data-dismiss='modal') Close
+        button.btn.btn-info(type='button', data-dismiss='modal') Close
         button.btn.btn-primary(type='button', data-dismiss='modal', (click)='update()') Save
 
 
