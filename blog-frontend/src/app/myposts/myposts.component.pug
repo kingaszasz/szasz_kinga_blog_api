@@ -1,8 +1,14 @@
-.btn-group(role='group', aria-label='Basic example')
-    button.btn.btn-info(type='button', data-toggle='collapse', data-target='#addNew', aria-expanded='false', aria-controls='collapseExample') Add new post
-    button.btn.btn-info(type='button', (click)='showPublic()') Public only
-    button.btn.btn-info(type='button',  (click)='showPrivate()') Private only
-    button.btn.btn-info(type='button', (click)='getAll()') Show all
+.row
+    .col-md-12.col-lg-8
+        .btn-group(role='group', aria-label='Basic example')
+            button.btn.btn-info(type='button', data-toggle='collapse', data-target='#addNew', aria-expanded='false', aria-controls='collapseExample') Add new post
+            button.btn.btn-info(type='button', (click)='showPublic()') Public only
+            button.btn.btn-info(type='button',  (click)='showPrivate()') Private only
+            button.btn.btn-info(type='button', (click)='getAll()') Show all
+    .col-md-12.col-lg-4
+        form.form-inline
+            input.form-control.col-md-6(name="searchValue" type='search', placeholder='in title / content', aria-label='Search', [(ngModel)]="searchFor")
+            button.btn.btn-warning.my-4.my-sm-0(type='button', (click)='search()') Search
 br
 
 #addNew.collapse
@@ -27,12 +33,31 @@ br
             .input-group-prepend
                 span.input-group-text Content:
             textarea.form-control([(ngModel)]="blogEntry.content", aria-label='With textarea')
+        br
+        .input-group
+            .input-group-prepend
+                label(for='exampleFormControlFile1')  Upload a picture
+                input#exampleFormControlFile1.input-control-file(type='file')
+
         
         br
         button.btn.btn-info(type="sumbmit", (click)='create()', data-toggle='collapse', data-target='#addNew', aria-controls='collapseExample') Send
         button.btn.btn-light(type="button", data-toggle='collapse', data-target='#addNew', aria-controls='collapseExample') Close
 
 br
+.container
+  .row
+    h3(*ngIf="searchSuccess==false") Nothing found containing {{searchValue}}! Try again...
+.container
+    .row
+        .col-sm-1
+            img(*ngIf="empty==true",src="/assets/img/up2.png", alt="arrow")
+        .col-sm-11.align-bottom
+            h3(*ngIf="empty==true") 
+                br
+                | You haven't got any posts yet!
+                br 
+                | Do some, it's easy
 
 .card-columns
         .card.border-info.mb-3(style='max-width: 18rem;')(*ngFor="let entry of myEntries ")

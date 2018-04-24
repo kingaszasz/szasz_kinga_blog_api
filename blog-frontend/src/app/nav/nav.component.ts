@@ -75,6 +75,7 @@ export class NavComponent implements OnInit {
     this.success = false;
     this.cookieUser = '';
     document.cookie = 'username=this.user.username; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/';
+    window.location.reload();
   }
 
   setCookie(cname, cvalue, exdays) {

@@ -7,5 +7,17 @@
 .card-body>p  {
   color: darkcyan;
 }
+.card-header.border-info.user {
+  background-color: #05a86a;
+  color: white;
+}
+
+.card-body.user>h5,
+.card-body.user>p  {
+  color: #05a86a;
+}
 
 
+h3 {
+  font-family: 'Rock Salt', cursive;
+}

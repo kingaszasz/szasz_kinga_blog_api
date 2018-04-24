@@ -1,21 +1,32 @@
 .card-header.border-info.private {
-    background-color: 	 #003333;
-    color: white;
-  }
-  
-  .card-body.private>h5,
-  .card-body.private>p  {
-    color: 	 #003333;
-  }
+  background-color: #003333;
+  color: white;
+}
+
+.card-body.private>h5,
+.card-body.private>p {
+  color: #003333;
+}
+
 .card-header.border-info {
-    background-color: #008b8b;
-    color: white;
-  }
-  
-  .card-body>h5,
-  .card-body>p  {
-    color: darkcyan;
-  }
-  
-  
-  
+  background-color: #008b8b;
+  color: white;
+}
+
+.card-body>h5,
+.card-body>p {
+  color: darkcyan;
+}
+
+h3 {
+  font-family: 'Rock Salt', cursive;
+}
+
+.col-sm-1>img {
+  width: 90px;
+  margin: 5px;
+}
+
+.col-sm-11.align-bottom>h3 {
+  margin: 20px;
+}

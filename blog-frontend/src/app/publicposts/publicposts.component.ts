@@ -11,6 +11,10 @@ export class PublicpostsComponent implements OnInit {
   entries: Array<BlogEntry>;
   publicEntries: Array<BlogEntry>;
 
+  searchFor: string;
+  searchValue = '';
+  searchSuccess = true;
+
 
   modal: BlogEntry = {
     _id: '',
@@ -33,11 +37,26 @@ export class PublicpostsComponent implements OnInit {
     this.http.get(this.url).subscribe(
       (data: Array<BlogEntry>) => {
         this.entries = data;
-        this.publicEntries = this.entries.filter(entry => (!entry.onlyMeCanSee || entry.onlyMeCanSee === false ));
-        console.log(this.publicEntries);
-
+        this.publicEntries = this.entries.filter(entry => (!entry.onlyMeCanSee || entry.onlyMeCanSee === false));
       }
     );
+  }
+
+  search() {
+    this.searchValue = this.searchFor;
+    this.http.get(this.url).subscribe(
+      (data: Array<BlogEntry>) => {
+        this.entries = data;
+        // tslint:disable-next-line:max-line-length
+        this.publicEntries = this.entries.filter(entry => (!entry.onlyMeCanSee || entry.onlyMeCanSee === false));
+        this.publicEntries = this.publicEntries.filter(entry => ((entry.title).toLocaleLowerCase().indexOf(this.searchFor) !== -1
+          || (entry.content).toLocaleLowerCase().indexOf(this.searchFor) !== -1));
+        if (!this.publicEntries[0]) {
+          this.searchSuccess = false;
+
+        }
+      });
+      this.searchSuccess = true;
   }
 
   modalChange(id) {

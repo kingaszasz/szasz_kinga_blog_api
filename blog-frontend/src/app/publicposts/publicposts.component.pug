@@ -1,18 +1,28 @@
 .container
-    .card-columns.col-md-12
-        .card.border-info.mb-3(style='max-width: 18rem;')(*ngFor="let entry of publicEntries")
-            .card-header.border-info {{entry.tag}}
-            .card-body
-                h5.card-title {{entry.title}}
-                p.card-text {{entry.content}} 
-            .card-footer.bg-transparent.border-info
-                p.small.text-muted 
-                    | Updated on: {{entry.updatedAt}} 
-                    | Created on: {{entry.createdAt}}
+  .row
+    .col-md-12.col-lg-4
+      form.form-inline
+        input.form-control.col-md-6(name="searchValue" type='text', placeholder='in title / content', aria-label='Search', [(ngModel)]="searchFor")
+        button.btn.btn-warning.my-4.my-sm-0(type='button', (click)='search()') Search
+  br
+.container
+  .row
+    h3(*ngIf="searchSuccess==false") Nothing found containing {{searchValue}}! Try again...
 
-                button.btn.btn-sm.btn-light(type="button", data-toggle='modal', data-target='#comment', (click)='modalChange(entry._id)') Comment
-
-
+br
+.card-columns.col-md-12
+  .card.border-info.mb-3(style='max-width: 18rem;')(*ngFor="let entry of publicEntries")
+    .card-header.border-info([ngClass]="{'user':(entry.username !== '' || entry.username !== 'no user') && entry.username}") {{entry.tag}}
+    .card-body([ngClass]="{'user':(entry.username !== '' || entry.username !== 'no user') && entry.username}")
+      h5.card-title {{entry.title}}
+      p.card-text {{entry.content}} 
+    .card-footer.bg-transparent.border-info
+      p.lead(*ngIf="entry.username !== '' && entry.username !== 'no user' && entry.username") Posted by: {{entry.username}}
+      p.small.text-muted 
+        | Updated on: {{entry.updatedAt | date}} 
+        br
+        | Created on: {{entry.createdAt | date}}
+      button.btn.btn-sm.btn-light(type="button", data-toggle='modal', data-target='#comment', (click)='modalChange(entry._id)') Comment
 
 // *********** MODAL FOR COMMENT
 

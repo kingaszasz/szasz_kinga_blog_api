@@ -64,8 +64,9 @@ module.exports = {
             if (err) {
                 res.send(err)
                 console.log(err)
+            } else {
+                res.json(data)
             }
-            res.json(data)
         })
     }
 

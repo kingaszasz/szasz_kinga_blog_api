@@ -21,6 +21,11 @@ export class MypostsComponent implements OnInit {
   myEntries: Array<BlogEntry>;
 
   showMyPublic = true;
+  empty = false;
+  searchValue = '';
+  searchSuccess = true;
+  searchFor: string;
+
 
   blogEntry: BlogEntry = {
     tag: '',
@@ -58,6 +63,9 @@ export class MypostsComponent implements OnInit {
       (data: Array<BlogEntry>) => {
         this.entries = data;
         this.myEntries = this.entries.filter(entry => ((entry.username) && entry.username === this.getCookie()));
+        if (!this.myEntries[0]) {
+          this.empty = true;
+        }
       }
     );
   }
@@ -79,7 +87,23 @@ export class MypostsComponent implements OnInit {
         // tslint:disable-next-line:max-line-length
         this.myEntries = this.entries.filter(entry => ((entry.username) && entry.username === this.getCookie() && entry.onlyMeCanSee === true));
       }
-    );  }
+    );
+  }
+  search(searchValue) {
+    this.searchValue = this.searchFor;
+    this.http.get(this.url).subscribe(
+      (data: Array<BlogEntry>) => {
+        this.entries = data;
+        this.myEntries = this.entries.filter(entry => ((entry.username) && entry.username === this.getCookie()));
+        // tslint:disable-next-line:max-line-length
+        this.myEntries = this.myEntries.filter(entry => ((entry.title).toLocaleLowerCase().indexOf(this.searchFor) !== -1
+          || (entry.content).toLocaleLowerCase().indexOf(this.searchFor) !== -1));
+        if (!this.myEntries[0]) {
+          this.searchSuccess = false;
+        }
+      });
+    this.searchSuccess = true;
+  }
 
   create() {
     this.cookieUser = this.getCookie();
